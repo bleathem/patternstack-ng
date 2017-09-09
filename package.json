@@ -1,14 +1,21 @@
 {
   "name": "patternstack-ng",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "serve": "ng serve",
+    "serve:docker": "ng serve --host 0.0.0.0 --port 4200 --disable-host-check",
     "build": "ng build",
+    "ghpages-build": "ng build --prod --deploy-url='/phoebe-ui' --base-href='/phoebe-ui/'",
+    "ghpages-publish": "git -C dist init; git -C dist add .; git -C dist commit -m'dist'; git -C dist remote add bleathem git@github.com:bleathem/phoebe-ui.git; git -C dist push -f bleathem master:gh-pages",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prod": "http-server dist/ -a 0.0.0.0 -p8080",
+    "docker:build": "docker build -t patternstack/patternstack-ng .",
+    "docker:dev": "docker run -p 4200:4200 -v ${PWD}/src:/usr/src/app/src -d patternstack/patternstack-ng npm run serve:docker"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +41,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "~3.1.1",
+    "http-server": "^0.10.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
