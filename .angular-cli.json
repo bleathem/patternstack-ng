@@ -21,6 +21,12 @@
       "styles": [
         "styles.less"
       ],
+      "stylePreprocessorOptions": {
+        "includePaths": [
+          "../node_modules",
+          "../node_modules/patternfly/node_modules"
+        ]
+      },
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
